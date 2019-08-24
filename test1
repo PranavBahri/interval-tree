@@ -1,0 +1,87 @@
+#include<iostream>
+#include<fstream>
+#include<string.h>
+#include<string>
+#include<stdio.h>
+#include<bits/stdc++.h>
+using namespace std;
+
+struct Actor
+{
+char name[40];
+long int number;
+};
+
+struct Edge
+{
+long int actor;
+long int movie;
+};
+
+struct Movie
+{
+char name[40];
+long int number;
+};
+
+
+int main() 
+{   int i=0;
+    Actor A[50];
+    Edge E[50];
+    Movie M[50];
+    char str1[50];
+    ifstream fp1("actors.txt");
+    if(fp1)
+    {
+    while(!fp1.eof())
+    {   
+        fp1.getline(A[i].name,70,'\n');
+        fp1.getline(str1,70,'\n');
+        sscanf(str1,"%ld",&A[i].number);
+        cout<<"Name : "<<A[i].name<<" Number : "<<A[i].number<<endl;
+        i++;
+    }
+    }
+    else
+    cout<<"Error in opening file";
+    fp1.close();
+    i=0;
+    char str2[50];
+    ifstream fp2("movies.txt");
+    if(fp2)
+    {
+    while(!fp2.eof())
+    {   
+        fp2.getline(M[i].name,70,'\n');
+        fp2.getline(str2,70,'\n');
+        sscanf(str2,"%ld",&M[i].number);
+        cout<<"Name : "<<M[i].name<<" Number : "<<M[i].number<<endl;
+        i++;
+    }
+    }
+    else
+    cout<<"Error in opening file";
+    fp2.close();
+    char str3[50];
+    char str4[50];
+    i=0;
+    ifstream fp3("connects.txt");
+    if(fp3)
+    {
+    while(!fp3.eof())
+    {   
+        fp3.getline(str3,70,' ');
+        fp3.getline(str4,70,' ');
+        sscanf(str3,"%ld",&E[i].actor);
+        sscanf(str4,"%ld",&E[i].movie);
+        cout<<"Actor : "<<E[i].actor<<" Movie : "<<E[i].movie<<endl;
+        i++;
+    }
+    }
+    else
+    cout<<"Error in opening file";
+    fp3.close();
+    return 0;
+
+}
